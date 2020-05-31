@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <ul>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="15:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="4:17">Flexbox Video</li>
+        <li data-time="2:10">Redux Video</li>
+        <li data-time="6:17">Flexbox Video</li>
+        <li data-time="9:10">Redux Video</li>
+        <li data-time="5:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+        <li data-time="10:17">Flexbox Video</li>
+        <li data-time="15:10">Redux Video</li>
+        <li data-time="20:17">Flexbox Video</li>
+        <li data-time="25:10">Redux Video</li>
+        <li data-time="15:17">Flexbox Video</li>
+        <li data-time="20:10">Redux Video</li>
+        <li data-time="22:17">Flexbox Video</li>
+        <li data-time="7:10">Redux Video</li>
+    </ul>
+    <script>
+       //select all the list items on the page and convert to array
+       const items = Array.from(document.querySelectorAll('[data-time]'));
+    //    console.log(items);
+
+       //filter for only the elements that contain the word 'flexbox'
+       const filtered = items
+       
+       .filter(item => item.textContent.includes('Flexbox'))
+
+       //map down to a list of time strings
+       .map(item => item.dataset.time)
+
+       //map to an array of seconds
+        .map(timecode => {
+            const parts = timecode.split(':').map(part => parseFloat(part));
+            // console.log(parts);
+            return (parts[0] * 60 + parts[1]);
+        })
+
+        //reduce to get total
+        .reduce((runningTotal, seconds) => runningTotal+ seconds,0)
+
+        
+
+       console.log(filtered);
+    </script>
+</body>
+</html>
